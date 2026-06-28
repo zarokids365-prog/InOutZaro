@@ -1,12 +1,62 @@
 {
-  "name": "nextjs-postgresql-template",
+  "name": "inoutzaro",
+  "version": "1.0.0",
+  "description": "سیستم حضور و غیاب InOutZaro",
+  "author": "InOutZaro Team",
+  "license": "MIT",
   "private": true,
+  "main": "electron/main.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
+  },
+  "build": {
+    "appId": "com.inoutzaro.app",
+    "productName": "InOutZaro",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "public/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "InOutZaro",
+      "installerIcon": "public/icon.png",
+      "uninstallerIcon": "public/icon.png"
+    },
+    "files": [
+      "**/*",
+      "!src/**",
+      "!*.md",
+      "!.github/**"
+    ],
+    "extraResources": [
+      {
+        "from": ".next",
+        "to": ".next"
+      },
+      {
+        "from": "public",
+        "to": "public"
+      },
+      {
+        "from": "node_modules",
+        "to": "node_modules"
+      }
+    ]
   },
   "dependencies": {
     "@types/bcryptjs": "^2.4.6",
